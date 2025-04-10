@@ -151,26 +151,23 @@
         }
 
         /* Media Query for screens with min-width 600px */
-        @media (min-width: 600px) {
-            body {
-                padding: 40px;
-                font-size: 18px;
-            }
-            button {
-                padding: 8px;
-                font-size: 14px;
-                width: auto;
-            }
-            nav {
-                font-size: larger;
-            }
-            .opt {
-                margin-right: 120px;
-            }
-            .bottom {
-                font-size: 1.2rem;
-            }
-        }
+       @media (max-width: 400px) {
+    body {
+        padding: 20px;
+        font-size: 14px; /* Slightly smaller font size for mobile */
+    }
+    button {
+        padding: 6px 10px; /* Smaller padding for mobile */
+        font-size: 12px;   /* Smaller font size for mobile */
+    }
+    .bottom h1 {
+        font-size: 1.4rem; /* Smaller heading size for mobile */
+    }
+    .bottom p {
+        font-size: 1rem;   /* Adjusted text size for mobile */
+    }
+}
+
     </style>
 </head>
 <body>
