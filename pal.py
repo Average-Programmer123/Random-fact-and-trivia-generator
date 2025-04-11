@@ -28,7 +28,7 @@ def get_fact():
         emoji = "🎨"
         url = "https://opentdb.com/api.php?amount=1&category=25&type=multiple"
     elif genre == "math":
-        emoji = "➗"
+        emoji = "📐"
         url = "http://numbersapi.com/random/math?json"
     elif genre == "sports":
         emoji = "🏅"
