@@ -3,7 +3,7 @@ import requests
 import html
 
 app = Flask(__name__)
-
+emoji = " "
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -13,20 +13,28 @@ def get_fact():
     genre = request.json.get('genre', 'any')
 
     if genre == "science":
+        emoji = "🔬"
         url = "https://opentdb.com/api.php?amount=1&category=17&type=multiple"
     elif genre == "history":
+        emoji = "📜"
         url = "https://opentdb.com/api.php?amount=1&category=23&type=multiple"
     elif genre == "geography":
+        emoji = "🗺️"
         url = "https://opentdb.com/api.php?amount=1&category=22&type=multiple"
     elif genre == "IT":
+        emoji = "💻"
         url = "https://opentdb.com/api.php?amount=1&category=18&type=multiple"
     elif genre == "arts":
+        emoji = "🎨"
         url = "https://opentdb.com/api.php?amount=1&category=25&type=multiple"
     elif genre == "math":
+        emoji = "➗"
         url = "http://numbersapi.com/random/math?json"
     elif genre == "sports":
+        emoji = "🏅"
         url = "https://opentdb.com/api.php?amount=1&category=21&type=multiple"
     else:
+        emoji = "🔍"
         url = "https://uselessfacts.jsph.pl/random.json?language=en"
 
     try:
@@ -43,7 +51,7 @@ def get_fact():
     else:
         fact = "Could not find a fact for the selected genre. Click the button once again."
 
-    return jsonify({'fact': f"🔍 {fact}"})
+    return jsonify({'fact': f"{emoji} {fact}"})
 
 if __name__ == '__main__':
     app.run(debug=True)
