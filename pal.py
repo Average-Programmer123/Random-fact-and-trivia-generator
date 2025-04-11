@@ -43,7 +43,7 @@ def get_fact():
     else:
         fact = "Could not find a fact for the selected genre. Click the button once again."
 
-    return jsonify({'fact': f"{fact}"})
+    return jsonify({'fact': f"🔍 {fact}"})
 
 if __name__ == '__main__':
     app.run(debug=True)
