@@ -255,6 +255,11 @@
         </div>
 
         <div id="fact" style="text-align: center; margin-top: 20px;">🔍</div>
+        <div id="fact-container" style="text-align: center; margin-top: 20px;">
+        <div id="fact" style="margin-bottom: 10px;"></div>
+        <button id="shareBtn" style="display: none;">🔗 Share Fact</button>
+        </div>
+
         <hr>
     </div>
     <div class="credit">
@@ -297,6 +302,34 @@
                 factElement.style.animation = 'none'; // Reset the animation
                 factElement.offsetHeight; // Trigger reflow
                 factElement.style.animation = 'fadeIn 1s ease-out forwards';
+
+                fetch('/get_fact', {
+              method: 'POST',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify({ genre: selectedGenre })
+            })
+            .then(response => response.json())
+            .then(data => {
+              const factElement = document.getElementById("fact");
+              factElement.innerText = data.fact;
+            
+              const shareBtn = document.getElementById("shareBtn");
+              shareBtn.style.display = "inline-block";
+            
+              shareBtn.onclick = () => {
+                if (navigator.share) {
+                  navigator.share({
+                    title: "Random Fact",
+                    text: data.fact,
+                    url: window.location.href
+                  }).catch(err => console.log('Share failed:', err));
+                } else {
+                  navigator.clipboard.writeText(data.fact);
+                  alert("Fact copied to clipboard!");
+                }
+              };
+            });
+
             })
             .catch(error => {
                 // Hide the loading spinner on error as well
