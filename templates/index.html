@@ -270,8 +270,8 @@
         <div id="fact" style="text-align: center; margin-top: 20px;">🔍</div>
         <div id="fact-container" style="text-align: center; margin-top: 20px;">
         <div id="fact" style="margin-bottom: 10px;"></div>
-        <button id="shareBtn" style="display: none;">🔗 Share</button>
         </div>
+        <button id="shareBtn" style="display: none;">🔗 Share</button>
         <hr>
     </div>
     <div class="credit">
@@ -288,71 +288,60 @@
      (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
     <script>
-        function getFact() {
-            // Show the loading spinner
-            document.getElementById("loading").style.display = "block";
-            
-            const genre = document.getElementById("genre").value;
+    function getFact() {
+        // Show the loading spinner
+        document.getElementById("loading").style.display = "block";
+        
+        const genre = document.getElementById("genre").value;
 
-            // Make POST request to the backend with genre
-            fetch('/get_fact', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ genre: genre })
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Hide the loading spinner
-                document.getElementById("loading").style.display = "none";
-                
-                const factElement = document.getElementById("fact");
-                factElement.innerText = data.fact;
-
-                // Triggering the fade-in animation again to make it smooth each time a new fact is loaded
-                factElement.style.animation = 'none'; // Reset the animation
-                factElement.offsetHeight; // Trigger reflow
-                factElement.style.animation = 'fadeIn 1s ease-out forwards';
-
-                fetch('/get_fact', {
-              method: 'POST',
-              headers: {'Content-Type': 'application/json'},
-              body: JSON.stringify({ genre: selectedGenre })
-            })
-            .then(response => response.json())
-            .then(data => {
-              const factElement = document.getElementById("fact");
-              factElement.innerText = data.fact;
+        // Make POST request to the backend with genre
+        fetch('/get_fact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ genre: genre })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Hide the loading spinner
+            document.getElementById("loading").style.display = "none";
             
-              const shareBtn = document.getElementById("shareBtn");
-              shareBtn.style.display = "inline-block";
-            
-              shareBtn.onclick = () => {
+            const factElement = document.getElementById("fact");
+            factElement.innerText = data.fact;
+
+            // Triggering the fade-in animation again to make it smooth each time a new fact is loaded
+            factElement.style.animation = 'none'; // Reset the animation
+            factElement.offsetHeight; // Trigger reflow
+            factElement.style.animation = 'fadeIn 1s ease-out forwards';
+
+            // Show and configure the share button
+            const shareBtn = document.getElementById("shareBtn");
+            shareBtn.style.display = "inline-block";
+
+            shareBtn.onclick = () => {
                 if (navigator.share) {
-                  navigator.share({
-                    title: "Random Fact",
-                    text: data.fact,
-                    url: window.location.href
-                  }).catch(err => console.log('Share failed:', err));
+                    navigator.share({
+                        title: "Random Fact",
+                        text: data.fact,
+                        url: window.location.href
+                    }).catch(err => console.log('Sharing failed:', err));
                 } else {
-                  navigator.clipboard.writeText(data.fact);
-                  alert("Fact copied to clipboard!");
+                    navigator.clipboard.writeText(data.fact);
+                    alert("📋 Fact copied to clipboard!");
                 }
-              };
-            });
-
-            })
-            .catch(error => {
-                // Hide the loading spinner on error as well
-                document.getElementById("loading").style.display = "none";
-                
-                const factElement = document.getElementById("fact");
-                factElement.innerText = "Oops! Something went wrong.";
-                console.error(error);
-            });
-        }
-    </script>
+            };
+        })
+        .catch(error => {
+            // Hide the loading spinner on error
+            document.getElementById("loading").style.display = "none";
+            
+            const factElement = document.getElementById("fact");
+            factElement.innerText = "Oops! Something went wrong.";
+            console.error(error);
+        });
+    }
+</script>
 </body>
 <footer>
     &copy; 2025 Random Fact Generator. All rights reserved. Suyash L.C
