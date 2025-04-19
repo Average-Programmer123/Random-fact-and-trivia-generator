@@ -278,90 +278,90 @@
     <div class="ad">
 
     </div>
-    <script>
-    function getFact() {
-        // Show the loading spinner
-        document.getElementById("loading").style.display = "block";
+        <script>
+        function getFact() {
+            // Show the loading spinner
+            document.getElementById("loading").style.display = "block";
 
-        const genre = document.getElementById("genre").value;
+            const genre = document.getElementById("genre").value;
 
-        // Make POST request to the backend with genre
-        fetch('/get_fact', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ genre: genre })
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Hide the loading spinner
-            document.getElementById("loading").style.display = "none";
+            // Make POST request to the backend with genre
+            fetch('/get_fact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ genre: genre })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Hide the loading spinner
+                document.getElementById("loading").style.display = "none";
 
-            const factElement = document.getElementById("fact");
-            factElement.innerText = data.fact;
+                const factElement = document.getElementById("fact-container");
+                factElement.innerText = data.fact;
 
-            // Store the fact in a variable for later use
-            const factText = data.fact;
+                // Store the fact in a variable for later use
+                const factText = data.fact;
 
-            // Triggering the fade-in animation again to make it smooth each time a new fact is loaded
-            factElement.style.animation = 'none'; // Reset the animation
-            factElement.offsetHeight; // Trigger reflow
-            factElement.style.animation = 'fadeIn 1s ease-out forwards';
+                // Triggering the fade-in animation again to make it smooth each time a new fact is loaded
+                factElement.style.animation = 'none'; // Reset the animation
+                factElement.offsetHeight; // Trigger reflow
+                factElement.style.animation = 'fadeIn 1s ease-out forwards';
 
-            // Show and configure the share button
-            const shareBtn = document.getElementById("shareBtn");
-            shareBtn.style.display = "inline-block";
+                // Show and configure the share button
+                const shareBtn = document.getElementById("shareBtn");
+                shareBtn.style.display = "inline-block";
 
-            // Prepare the formatted fact for sharing and copying
-            const formattedFact = `${factText}\n\n(Fact site: Free random fact and trivia generator - ${window.location.href})\n\nSource: Open Trivia Database`;
+                // Prepare the formatted fact for sharing and copying
+                const formattedFact = `${factText}\n\n(Fact site: Free random fact and trivia generator - ${window.location.href})\n\nSource: Open Trivia Database`;
 
-            // Configure the button to share or copy
-            shareBtn.onclick = () => {
-                // For sharing (using native share API if available)
-                if (navigator.share) {
-                    navigator.share({
-                        title: "Random Fact",
-                        text: formattedFact,
-                        url: window.location.href
-                    }).catch(err => console.log('Sharing failed:', err));
-                } else {
-                    // For copying to clipboard
-                    navigator.clipboard.writeText(formattedFact)
-                        .then(() => {
-                            alert("📋 Fact copied to clipboard!");
-                        })
-                        .catch(err => {
-                            console.error('Clipboard copy failed:', err);
-                            alert("Failed to copy the fact. Please try again.");
-                        });
-                }
-            };
+                // Configure the button to share or copy
+                shareBtn.onclick = () => {
+                    // For sharing (using native share API if available)
+                    if (navigator.share) {
+                        navigator.share({
+                            title: "Random Fact",
+                            text: formattedFact,
+                            url: window.location.href
+                        }).catch(err => console.log('Sharing failed:', err));
+                    } else {
+                        // For copying to clipboard
+                        navigator.clipboard.writeText(formattedFact)
+                            .then(() => {
+                                alert("📋 Fact copied to clipboard!");
+                            })
+                            .catch(err => {
+                                console.error('Clipboard copy failed:', err);
+                                alert("Failed to copy the fact. Please try again.");
+                            });
+                    }
+                };
 
-            // Mail share functionality
-            const mailBtn = document.getElementById("mailBtn");
-            mailBtn.style.display = "inline-block";
+                // Mail share functionality
+                const mailBtn = document.getElementById("mailBtn");
+                mailBtn.style.display = "inline-block";
 
-            // Configure the button to share via email
-            mailBtn.onclick = () => {
-                const mailBody = encodeURIComponent(formattedFact);
-                const mailSubject = encodeURIComponent("Check out this Random Fact!");
-                window.location.href = `mailto:?subject=${mailSubject}&body=${mailBody}`;
-            };
-        })
-        .catch(error => {
-            // Hide the loading spinner on error
-            document.getElementById("loading").style.display = "none";
+                // Configure the button to share via email
+                mailBtn.onclick = () => {
+                    const mailBody = encodeURIComponent(formattedFact);
+                    const mailSubject = encodeURIComponent("Check out this Random Fact!");
+                    window.location.href = `mailto:?subject=${mailSubject}&body=${mailBody}`;
+                };
+            })
+            .catch(error => {
+                // Hide the loading spinner on error
+                document.getElementById("loading").style.display = "none";
 
-            const factElement = document.getElementById("fact");
-            factElement.innerText = "Oops! Something went wrong.";
-            console.error(error);
-        });
-    }
+                const factElement = document.getElementById("fact-container");
+                factElement.innerText = "Oops! Something went wrong.";
+                console.error(error);
+            });
+        }
 
-    // Make sure the "generate" button calls getFact when clicked
-    document.getElementById("generateBtn").addEventListener("click", getFact);
-</script>
+        // Make sure the "generate" button calls getFact when clicked
+        document.getElementById("generateBtn").addEventListener("click", getFact);
+    </script>
 </body>
 <footer>
     &copy; 2025 Random Fact Generator. All rights reserved. Suyash L.C
