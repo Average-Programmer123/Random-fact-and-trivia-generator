@@ -287,7 +287,6 @@
 </script>
 <script type="text/javascript" src="//www.highperformanceformat.com/4ee6d49f77adc4462ebccfd7c6fdbb8a/invoke.js"></script>
     </div>
-      
     <script>
     function getFact() {
         // Show the loading spinner
@@ -321,20 +320,18 @@
             shareBtn.style.display = "inline-block";
 
             shareBtn.onclick = () => {
-    	    const formattedFact = `${data.fact}\n\n(Fact site: Free random fact and trivia generator - ${window.location.href})\n\nSource: Open Trivia Database`;
-
-	    if (navigator.share) {
-	        navigator.share({
-	            title: "Random Fact",
-	            text: formattedFact,
-	            url: window.location.href
-	        }).catch(err => console.log('Sharing failed:', err));
-	    } else {
-	        navigator.clipboard.writeText(formattedFact);
-	        alert("📋 Fact copied to clipboard!");
-	    }
-	};
-
+                if (navigator.share) {
+                    navigator.share({
+                        title: "Random Fact",
+                        text: data.fact,
+                        url: window.location.href
+                    }).catch(err => console.log('Sharing failed:', err));
+                } else {
+                    navigator.clipboard.writeText(data.fact);
+                    alert("📋 Fact copied to clipboard!");
+                }
+            };
+        })
         .catch(error => {
             // Hide the loading spinner on error
             document.getElementById("loading").style.display = "none";
