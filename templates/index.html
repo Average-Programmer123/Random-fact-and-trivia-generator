@@ -311,46 +311,27 @@
             shareBtn.style.display = "inline-block";
 
             shareBtn.onclick = () => {
-                    // For sharing (using native share API if available)
-                    if (navigator.share) {
-                        navigator.share({
-                            title: "Random Fact",
-                            text: formattedFact,
-                            url: window.location.href
-                        }).catch(err => console.log('Sharing failed:', err));
-                    } else {
-                        // For copying to clipboard
-                        navigator.clipboard.writeText(formattedFact)
-                            .then(() => {
-                                alert("📋 Fact copied to clipboard!");
-                            })
-                            .catch(err => {
-                                console.error('Clipboard copy failed:', err);
-                                alert("Failed to copy the fact. Please try again.");
-                            });
-                    }
-                };
-
-                // Mail share functionality
-                const mailBtn = document.getElementById("mailBtn");
-                mailBtn.style.display = "inline-block";
-
-                // Configure the button to share via email
-                mailBtn.onclick = () => {
-                    const mailBody = encodeURIComponent(formattedFact);
-                    const mailSubject = encodeURIComponent("Check out this Random Fact!");
-                    window.location.href = `mailto:?subject=${mailSubject}&body=${mailBody}`;
-                };
-            })
-            .catch(error => {
-                // Hide the loading spinner on error
-                document.getElementById("loading").style.display = "none";
-
-                const factElement = document.getElementById("fact-container");
-                factElement.innerText = "Oops! Something went wrong.";
-                console.error(error);
-            });
-        }
+                if (navigator.share) {
+                    navigator.share({
+                        title: "Random Fact",
+                        text: data.fact,
+                        url: window.location.href
+                    }).catch(err => console.log('Sharing failed:', err));
+                } else {
+                    navigator.clipboard.writeText(data.fact);
+                    alert("📋 Fact copied to clipboard!");
+                }
+            };
+        })
+        .catch(error => {
+            // Hide the loading spinner on error
+            document.getElementById("loading").style.display = "none";
+            
+            const factElement = document.getElementById("fact");
+            factElement.innerText = "Oops! Something went wrong.";
+            console.error(error);
+        });
+    }
 </script>
 </body>
 <footer>
