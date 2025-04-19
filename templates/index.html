@@ -277,16 +277,23 @@
     <b><p>Source: Open Trivia Database (OTDB)</p></b>
     </div>
     <div class="ad">
-    <script type="text/javascript">
-	atOptions = {
-		'key' : '4ee6d49f77adc4462ebccfd7c6fdbb8a',
-		'format' : 'iframe',
-		'height' : 50,
-		'width' : 320,
-		'params' : {}
-	};
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/4ee6d49f77adc4462ebccfd7c6fdbb8a/invoke.js"></script>
+   <script type="text/javascript">
+      if (typeof atAsyncOptions !== 'object') var atAsyncOptions = [];
+      atAsyncOptions.push({
+          'key': '4ee6d49f77adc4462ebccfd7c6fdbb8a',
+          'format': 'js',
+          'async': true,
+          'container': 'atContainer-4ee6d49f77adc4462ebccfd7c6fdbb8a',
+          'params' : {}
+      });
+      var script = document.createElement('script');
+      script.type = "text/javascript";
+      script.async = true;
+      script.src = 'http' + (location.protocol === 'https:' ? 's' : '') + '://www.highperformanceformat.com/4ee6d49f77adc4462ebccfd7c6fdbb8a/invoke.js';
+      document.getElementsByTagName('head')[0].appendChild(script);
+  </script>
+
+  <div id="atContainer-4ee6d49f77adc4462ebccfd7c6fdbb8a"></div>
     </div>
       
     <script>
