@@ -3,7 +3,7 @@ import requests
 import html
 
 app = Flask(__name__)
-emoji = " "
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -12,6 +12,7 @@ def home():
 def get_fact():
     genre = request.json.get('genre', 'any')
 
+    # Initialize emoji here based on the genre
     if genre == "science":
         emoji = "🔬"
         url = "https://opentdb.com/api.php?amount=1&category=17&type=multiple"
@@ -42,6 +43,7 @@ def get_fact():
     except Exception:
         return jsonify({'fact': "Error fetching data from the API."})
 
+    # Processing the response and returning the fact
     if "text" in res:
         fact = res['text']
     elif "fact" in res:
