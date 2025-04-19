@@ -310,40 +310,6 @@
             const shareBtn = document.getElementById("shareBtn");
             shareBtn.style.display = "inline-block";
 
-            const formattedFact = `${data.fact}\n\n(Fact site: Free random fact and trivia generator - ${window.location.href})\n\nSource: Open Trivia Database`;
-
-            <script>
-    function getFact() {
-        // Show the loading spinner
-        document.getElementById("loading").style.display = "block";
-
-        const genre = document.getElementById("genre").value;
-
-        // Make POST request to the backend with genre
-        fetch('/get_fact', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ genre: genre })
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Hide the loading spinner
-            document.getElementById("loading").style.display = "none";
-
-            const factElement = document.getElementById("fact");
-            factElement.innerText = data.fact;
-
-            // Triggering the fade-in animation again to make it smooth each time a new fact is loaded
-            factElement.style.animation = 'none'; // Reset the animation
-            factElement.offsetHeight; // Trigger reflow
-            factElement.style.animation = 'fadeIn 1s ease-out forwards';
-
-            // Show and configure the share button
-            const shareBtn = document.getElementById("shareBtn");
-            shareBtn.style.display = "inline-block";
-
             // Prepare the formatted fact for sharing and copying
             const formattedFact = `${data.fact}\n\n(Fact site: Free random fact and trivia generator - ${window.location.href})\n\nSource: Open Trivia Database`;
 
@@ -377,6 +343,9 @@
             console.error(error);
         });
     }
+
+    // Make sure the "generate" button calls getFact when clicked
+    document.getElementById("generateBtn").addEventListener("click", getFact);
 </script>
 </body>
 <footer>
