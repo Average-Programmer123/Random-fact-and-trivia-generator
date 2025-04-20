@@ -345,7 +345,7 @@
                     navigator.share({
                         title: "Random Fact",
                         text: "Starfish",
-                        url: window.location.href
+                        //url: window.location.href
                     }).catch(err => console.log('Sharing failed:', err));
                 } else {
                     navigator.clipboard.writeText(data.fact);
