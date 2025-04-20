@@ -30,7 +30,12 @@
         background-position: center;
         font-family: 'DM Sans', sans-serif;
     }
+    .more svg{
+        float:left;
+    }
+    .fact-container{
 
+    }
     html, body {
         height: 100%;
         margin: 0;
@@ -39,9 +44,7 @@
         background-color: black;
         font-family: 'DM Sans', sans-serif;
     }
-    .more svg{
-        float:left;
-    }
+
     a {
         text-decoration: none;
         color: white;
@@ -161,7 +164,7 @@
         margin-left: 20px;
     }
 
-    #fact {
+    #fact-container {
         background-color: #333;
         color: white;
         padding: 20px;
@@ -174,7 +177,6 @@
         opacity: 0;
         animation: fadeIn 1s ease-out forwards;
     }
-
     @keyframes fadeIn {
         from {
             opacity: 0;
@@ -286,7 +288,7 @@
             <div id="loading" style="display: none;">
                 <img src="https://media.tenor.com/UnFx-k_lSckAAAAM/amalie-steiness.gif" alt="Loading...">
             </div>
-            <div id="fact" style="text-align: center; margin-top: 20px;">🔍</div>
+            <ul><div id="fact-container" style="text-align: center; margin-top: 20px;">🔍</div></ul>
             <div id="fact-container" style="text-align: center; margin-top: 20px;">
             <div id="fact" style="margin-bottom: 10px;">
             </div>
@@ -299,7 +301,7 @@
         </p></b>
         </div>
         <span class = "more" title="More Information">
-            <p> Lean more about Privacy policy, About and Support
+            <p> Lean more about privacy policy
             <a href="https://average-programmer123.github.io/About-Contact-Privacy-Policy/">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
@@ -311,8 +313,7 @@
         <div class="ad"><center>
         
         </center></div>
-       <script>
-            <script>
+        <script>
             async function getFact() {
                 const genre = document.getElementById("genre").value;
                 const count = parseInt(document.getElementById("count").value) || 1;
