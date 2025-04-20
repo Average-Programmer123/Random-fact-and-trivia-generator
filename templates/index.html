@@ -294,6 +294,7 @@
     
     </center></div>
        <script>
+     <script>
     function getFact() {
         // Show the loading spinner
         document.getElementById("loading").style.display = "block";
@@ -320,6 +321,24 @@
             factElement.style.animation = 'none'; // Reset the animation
             factElement.offsetHeight; // Trigger reflow
             factElement.style.animation = 'fadeIn 1s ease-out forwards';
+
+            // Show and configure the share button
+            const shareBtn = document.getElementById("shareBtn");
+            shareBtn.style.display = "inline-block";
+
+            shareBtn.onclick = () => {
+                if (navigator.share) {
+                    navigator.share({
+                        title: "Random Fact",
+                        text: data.fact,
+                        url: window.location.href
+                    }).catch(err => console.log('Sharing failed:', err));
+                } else {
+                    navigator.clipboard.writeText(data.fact);
+                    alert("📋 Fact copied to clipboard!");
+                }
+            };
+        })
         .catch(error => {
             // Hide the loading spinner on error
             document.getElementById("loading").style.display = "none";
