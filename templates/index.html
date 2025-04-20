@@ -18,324 +18,328 @@
     <meta name="twitter:description" content="Get a surprising, fun fact every time you click the button!" />
     <meta name="twitter:image" content="https://png.pngtree.com/png-vector/20221006/ourmid/pngtree-cartoon-magnifying-glass-illustration-png-image_6288980.png" />
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.93), rgba(0,0,0,0.93)), 
-                         url("{{ url_for('static', filename='b.png') }}");
-            background-size: cover;
-            background-position: center;
-            font-family: sans-serif;
+            body {
+                margin: 0;
+                padding: 0;
+                height: 100vh;
+                background: linear-gradient(rgba(0,0,0,0.93), rgba(0,0,0,0.93)), 
+                             url("{{ url_for('static', filename='b.png') }}");
+                background-size: cover;
+                background-position: center;
+                font-family: sans-serif;
+            }
+            a{
+                text-decoration:none;
+                color:white;
+            }
+            a:hover{
+                color:grey;
+            }
+            .ad{
+                padding:2px;
+            }
+            .credit {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            float: left;
+            margin-left: 10px;
+            display: inline-block;
+            }
+        
+        .more {
+            float: left;
+            margin-left: 10px;
         }
-        a{
-            text-decoration:none;
-            color:white;
+        
+        .more svg {
+            width: 18px;
+            height: 18px;
+            margin-right: 10px;
+            cursor: pointer;
         }
-        a:hover{
-            color:grey;
-        }
-        .ad{
-            padding:2px;
-        }
-        .credit {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        color: white;
-        float: left;
-        margin-left: 10px;
-        display: inline-block;
-        }
+            svg{
+                float:right;
+                padding: 5px;
+                margin-right: 80px;
+                width:30px;
+                height: 30px;
+            }
+            svg:hover {
+                color: wheat;
+                transform: scale(1.2);
+            }
+            .opt {
+                float: right;
+                margin-right: 100px;
+            }
+            nav {
+                background-color: darkcyan;
+                padding: 20px;
+                font-size: larger;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                color: white;
+                animation: fadeIn 1s ease-out;
+            }
+            html, body {
+                height: 100%;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                background-color: black;
+            }
     
-    .more {
-        float: left;
-        margin-left: 10px;
-    }
+            label {
+                font-size: larger;
+                color: white;
+            }
+            .bottom {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                color: white;
+                animation: slideUp 1s ease-out;
+            }
+            footer {
+                background-color: darkcyan;
+                text-align: center;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                color: white;
+                padding: 10px;
+                margin-top: auto; /* Ensures the footer is always at the bottom */
+                animation: fadeIn 1s ease-out;
+            }
+            button {
+                border-radius: 8px;
+                padding: 10px;
+                background-color: black;
+                border-color: grey;
+                border-width: 5px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                color: white;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
+                transition: transform 0.3s ease, background-color 0.3s ease;
+            }
+            button:hover {
+                background-color: grey;
+                color: black;
+                border-color: white;
+                transform: scale(1.2); 
+            }
+            hr {
+                border: none;
+                border-top: 2px solid gray;
+                margin: 20px 0;
+            }
+            select {
+                background-color: black;
+                color: white;
+                border: 2px solid gray;
+                padding: 5px;
+                border-radius: 6px;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            .emj {
+                margin-left: 20px;
+            }
     
-    .more svg {
-        width: 18px;
-        height: 18px;
-        margin-right: 10px;
-        cursor: pointer;
-    }
-        svg{
-            float:right;
-            padding: 5px;
-            margin-right: 80px;
-            width:30px;
-            height: 30px;
-        }
-        svg:hover {
-            color: wheat;
-            transform: scale(1.2);
-        }
-        .opt {
-            float: right;
-            margin-right: 100px;
-        }
+            #fact {
+                background-color: #333;   /* Dark background for the fact box */
+                color: white;             /* White text color */
+                padding: 20px;            /* Padding around the text */
+                border-radius: 8px;       /* Rounded corners */
+                font-size: 1.2rem;        /* Slightly larger font size */
+                width: 80%;               /* Set width to make it centered */
+                margin: 20px auto;        /* Centering the fact box */
+                text-align: center;       /* Center-align the text */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Soft shadow around the box */
+                opacity: 0;
+                animation: fadeIn 1s ease-out forwards;
+            }
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+    
+            @keyframes slideUp {
+                from {
+                    transform: translateY(20px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+    
+            #loading {
+                text-align: center;
+                margin-top: 20px;
+            }
+    
+            #loading img {
+                width: 50px;
+            }
+    
+            /* Media Query for screens with min-width 600px */
+         @media (max-width: 600px) {
         nav {
-            background-color: darkcyan;
-            padding: 20px;
-            font-size: larger;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: white;
-            animation: fadeIn 1s ease-out;
+            padding: 2px; /* Reduced padding */
+            font-size: 0.8rem; /* Smaller font size */
         }
-        html, body {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            background-color: black;
-        }
-
-        label {
-            font-size: larger;
-            color: white;
-        }
-        .bottom {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: white;
-            animation: slideUp 1s ease-out;
-        }
-        footer {
-            background-color: darkcyan;
-            text-align: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: white;
-            padding: 10px;
-            margin-top: auto; /* Ensures the footer is always at the bottom */
-            animation: fadeIn 1s ease-out;
-        }
-        button {
-            border-radius: 8px;
-            padding: 10px;
-            background-color: black;
-            border-color: grey;
-            border-width: 5px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-        button:hover {
-            background-color: grey;
-            color: black;
-            border-color: white;
-            transform: scale(1.2); 
-        }
-        hr {
-            border: none;
-            border-top: 2px solid gray;
-            margin: 20px 0;
-        }
-        select {
-            background-color: black;
-            color: white;
-            border: 2px solid gray;
-            padding: 5px;
-            border-radius: 6px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        .emj {
-            margin-left: 20px;
-        }
-
-        #fact {
-            background-color: #333;   /* Dark background for the fact box */
-            color: white;             /* White text color */
-            padding: 20px;            /* Padding around the text */
-            border-radius: 8px;       /* Rounded corners */
-            font-size: 1.2rem;        /* Slightly larger font size */
-            width: 80%;               /* Set width to make it centered */
-            margin: 20px auto;        /* Centering the fact box */
-            text-align: center;       /* Center-align the text */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Soft shadow around the box */
-            opacity: 0;
-            animation: fadeIn 1s ease-out forwards;
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(20px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        #loading {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        #loading img {
-            width: 50px;
-        }
-
-        /* Media Query for screens with min-width 600px */
-     @media (max-width: 600px) {
-    nav {
-        padding: 2px; /* Reduced padding */
-        font-size: 0.8rem; /* Smaller font size */
-    }
-
-    footer {
-        font-size: 0.5rem; /* Smaller font size */
-        padding: 2px; /* Reduced padding */
-    }
-
-    select, .opt{
-        font-size: 0.4rem; /* Further reduced font size */
-        padding: 1px; /* Minimal padding */
-        margin:2px;
-    }
-    svg {
-        width: 15px; /* Smaller size for SVG */
-        height: 15px; /* Smaller size for SVG */
-        float:center;
-        margin-right:150px;
-    }
-
-    .opt{
-        font-size: 0.6rem; /* Adjusted size for other elements */
-    }
-    .emj{
-        font-size: 0.8rem;
-    }
-
-    .credit {
-        font-size: 0.6rem; /* Small font for credits */
-    }
-    #fact{
-            background-color: #333;   /* Dark background for the fact box */
-            color: white;             /* White text color */
-            padding: 20px;            /* Padding around the text */
-            border-radius: 8px;       /* Rounded corners */
-            font-size: 0.7rem;        /* Slightly larger font size */
-            width: 80%;               /* Set width to make it centered */
-            margin: 10px auto;        /* Centering the fact box */
-            text-align: center;       /* Center-align the text */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Soft shadow around the box */
-            opacity: 0;
-            animation: fadeIn 1s ease-out forwards;
-    }
-    b{
-        margin-left:5px;
-        margin-top:5px;
-    }
-}
-
-
-    </style>
-</head>
-<body>
-    <nav>
-        <a href="https://free-random-fact-and-trivia-generator.onrender.com"><b>|  Random Fact & Trivia Generator  |</b></a>
-        <span class="opt">
-            <label for="genre">| Genre</label>
-            <select id="genre">
-                <option value="any">Any  🔍</option>
-                <option value="history">History  📜</option>
-                <option value="IT">IT  💻</option>
-                <option value="arts">Arts  🎨</option>
-                <option value="science">Science  🔬</option>
-                <option value="math">Math  📐</option>
-                <option value="geography">Geography  🗺️</option>
-                <option value="sports">Sports  🏅</option>
-            </select> <label for="|">|</label>
-        </span>
-        <span class="emj">🧠</span>
-    </nav>
-
-    <div class="bottom">
-        <hr>
-        <center>
-            <h1>Ready to enlighten your knowledge?</h1>
-            <p>|   Click the button below   |</p>
-        </center>
-        <hr>
-        <center>
-            <button onclick="getFact()" id="generate-btn">Generate</button>
-        </center>
-
-        <!-- Loading Spinner -->
-        <div id="loading" style="display: none;">
-            <img src="https://media.tenor.com/UnFx-k_lSckAAAAM/amalie-steiness.gif" alt="Loading...">
-        </div>
-
-        <div id="fact" style="text-align: center; margin-top: 20px;">🔍</div>
-        <div id="fact-container" style="text-align: center; margin-top: 20px;">
-        <div id="fact" style="margin-bottom: 10px;"></div>
-        </div>
-        <hr>
-    </div>
-    <div class="credit">
-    <b><p><a href="https://opentdb.com">Source: Open Trivia Database (OTDB)</a> & <a href="https://uselessfacts.jsph.pl/random.json?language=en">Useless Facts</a>
-        <span class = "more" title="More Information">
-        <a href="">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
-        </svg>
-        </a>
-        </span>
-    </p></b>
-    </div>
-    <div class="ad"><center>
     
-    </center></div>
-   <script>
-        function getFact() {
-            // Show the loading spinner
-            document.getElementById("loading").style.display = "block";
-            
-            const genre = document.getElementById("genre").value;
-
-            // Make POST request to the backend with genre
-            fetch('/get_fact', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ genre: genre })
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Hide the loading spinner
-                document.getElementById("loading").style.display = "none";
-                
-                const factElement = document.getElementById("fact");
-                factElement.innerText = data.fact;
-
-                // Triggering the fade-in animation again to make it smooth each time a new fact is loaded
-                factElement.style.animation = 'none'; // Reset the animation
-                factElement.offsetHeight; // Trigger reflow
-                factElement.style.animation = 'fadeIn 1s ease-out forwards';
-            })
-            .catch(error => {
-                // Hide the loading spinner on error as well
-                document.getElementById("loading").style.display = "none";
-                
-                const factElement = document.getElementById("fact");
-                factElement.innerText = "Oops! Something went wrong.";
-                console.error(error);
-            });
+        footer {
+            font-size: 0.5rem; /* Smaller font size */
+            padding: 2px; /* Reduced padding */
         }
-    </script>
-</body>
-<footer>
-    &copy; 2025 Random Fact Generator. All rights reserved. Suyash L.C
-    <yt><a href="https://www.youtube.com/@program.1234"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
-        <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
-      </svg></a></yt>
+    
+        select, .opt{
+            font-size: 0.4rem; /* Further reduced font size */
+            padding: 1px; /* Minimal padding */
+            margin:2px;
+        }
+        svg {
+            width: 15px; /* Smaller size for SVG */
+            height: 15px; /* Smaller size for SVG */
+            float:center;
+            margin-right:150px;
+        }
+    
+        .opt{
+            font-size: 0.6rem; /* Adjusted size for other elements */
+        }
+        .emj{
+            font-size: 0.8rem;
+        }
+    
+        .credit {
+            font-size: 0.6rem; /* Small font for credits */
+        }
+        #fact{
+                background-color: #333;   /* Dark background for the fact box */
+                color: white;             /* White text color */
+                padding: 20px;            /* Padding around the text */
+                border-radius: 8px;       /* Rounded corners */
+                font-size: 0.7rem;        /* Slightly larger font size */
+                width: 80%;               /* Set width to make it centered */
+                margin: 10px auto;        /* Centering the fact box */
+                text-align: center;       /* Center-align the text */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Soft shadow around the box */
+                opacity: 0;
+                animation: fadeIn 1s ease-out forwards;
+        }
+        b{
+            margin-left:5px;
+            margin-top:5px;
+        }
+    }
+    </style>
+    </head>
+    <body>
+        <nav>
+            <a href="https://free-random-fact-and-trivia-generator.onrender.com"><b>|  Random Fact & Trivia Generator  |</b></a>
+            <span class="opt">
+                <label for="genre">| Genre</label>
+                <select id="genre">
+                    <option value="any">Any  🔍</option>
+                    <option value="history">History  📜</option>
+                    <option value="IT">IT  💻</option>
+                    <option value="arts">Arts  🎨</option>
+                    <option value="science">Science  🔬</option>
+                    <option value="math">Math  📐</option>
+                    <option value="geography">Geography  🗺️</option>
+                    <option value="sports">Sports  🏅</option>
+                </select> <label for="|">|</label>
+            </span>
+            <span class="emj">🧠</span>
+        </nav>
+    
+        <div class="bottom">
+            <hr>
+            <center>
+                <h1>Ready to enlighten your knowledge?</h1>
+                <p>|   Click the button below   |</p>
+            </center>
+            <hr>
+            <center>
+                <button onclick="getFact()" id="generate-btn">Generate</button>
+            </center>
+    
+            <!-- Loading Spinner -->
+            <div id="loading" style="display: none;">
+                <img src="https://media.tenor.com/UnFx-k_lSckAAAAM/amalie-steiness.gif" alt="Loading...">
+            </div>
+            <div id="fact" style="text-align: center; margin-top: 20px;">🔍</div>
+            <div id="fact-container" style="text-align: center; margin-top: 20px;">
+            <div id="fact" style="margin-bottom: 10px;">
+                <span title="Learn about the fact"><button onclick="getInfo()">❔</button></span>
+            </div>
+            </div>
+            <hr>
+        </div>
+        <div class="credit">
+        <b><p><a href="https://opentdb.com">Source: Open Trivia Database (OTDB)</a> & <a href="https://uselessfacts.jsph.pl/random.json?language=en">Useless Facts</a>
+            <span class = "more" title="More Information">
+            <a href="">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+            </svg>
+            </a>
+            </span>
+        </p></b>
+        </div>
+        <div class="ad"><center>
+        
+        </center></div>
+       <script>
+            function getFact() {
+                // Show the loading spinner
+                document.getElementById("loading").style.display = "block";
+                
+                const genre = document.getElementById("genre").value;
+    
+                // Make POST request to the backend with genre
+                fetch('/get_fact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ genre: genre })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Hide the loading spinner
+                    document.getElementById("loading").style.display = "none";
+                    
+                    const factElement = document.getElementById("fact");
+                    factElement.innerText = data.fact;
+    
+                    // Triggering the fade-in animation again to make it smooth each time a new fact is loaded
+                    factElement.style.animation = 'none'; // Reset the animation
+                    factElement.offsetHeight; // Trigger reflow
+                    factElement.style.animation = 'fadeIn 1s ease-out forwards';
+                })
+                .catch(error => {
+                    // Hide the loading spinner on error as well
+                    document.getElementById("loading").style.display = "none";
+                    
+                    const factElement = document.getElementById("fact");
+                    factElement.innerText = "Oops! Something went wrong.";
+                    console.error(error);
+                });
+            }
+            function getInfo{
+                let fact1 = data.fact; 
+                let searchQuery = `what is ${fact1}`;
+                window.open(`https://www.google.com/search?q=${encodeURIComponent(searchQuery)}`);
+            }
+        </script>
+    </body>
+    <footer>
+        &copy; 2025 Random Fact Generator. All rights reserved. Suyash L.C
+        <yt><a href="https://www.youtube.com/@program.1234"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
+            <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
+          </svg></a></yt>
 </footer>
 </html>
