@@ -293,27 +293,44 @@
     <div class="ad"><center>
     
     </center></div>
-     <script>
-document.getElementById('generate-btn').addEventListener('click', function () {
-    const genre = document.getElementById('genre-select').value;
+   <script>
+        function getFact() {
+            // Show the loading spinner
+            document.getElementById("loading").style.display = "block";
+            
+            const genre = document.getElementById("genre").value;
 
-    fetch('/get_fact', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ genre: genre })
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('fact-text').innerText = data.fact;
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        document.getElementById('fact-text').innerText = "Something went wrong.";
-    });
-});
-</script>
+            // Make POST request to the backend with genre
+            fetch('/get_fact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ genre: genre })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Hide the loading spinner
+                document.getElementById("loading").style.display = "none";
+                
+                const factElement = document.getElementById("fact");
+                factElement.innerText = data.fact;
+
+                // Triggering the fade-in animation again to make it smooth each time a new fact is loaded
+                factElement.style.animation = 'none'; // Reset the animation
+                factElement.offsetHeight; // Trigger reflow
+                factElement.style.animation = 'fadeIn 1s ease-out forwards';
+            })
+            .catch(error => {
+                // Hide the loading spinner on error as well
+                document.getElementById("loading").style.display = "none";
+                
+                const factElement = document.getElementById("fact");
+                factElement.innerText = "Oops! Something went wrong.";
+                console.error(error);
+            });
+        }
+    </script>
 </body>
 <footer>
     &copy; 2025 Random Fact Generator. All rights reserved. Suyash L.C
