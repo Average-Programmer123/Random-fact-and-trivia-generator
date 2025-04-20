@@ -205,6 +205,32 @@
     #loading img {
         width: 50px;
     }
+    .inp {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: 20px;
+    color: white;
+    font-size: 1rem;
+}
+
+.inp input[type="number"] {
+    width: 60px;
+    padding: 5px;
+    border: 2px solid gray;
+    border-radius: 6px;
+    background-color: black;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.inp input[type="number"]:focus {
+    border-color: cyan;
+    box-shadow: 0 0 5px cyan;
+}
+
 
     @media (max-width: 600px) {
         nav {
@@ -291,7 +317,7 @@
             <ul><div id="fact-container" style="text-align: center; margin-top: 20px;">🔍</div></ul>
             </div>
             </div>
-            <input type="number" id="count">
+            <span id="inp"><input type="number" id="count" min="1" max="10"></span>
             <hr>
         </div>
         <div class="credit">
