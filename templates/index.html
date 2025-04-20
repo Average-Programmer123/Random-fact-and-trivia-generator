@@ -344,12 +344,12 @@
                 if (navigator.share) {
                     navigator.share({
                         title: "Random Fact",
-                        text: data.fact,
-                        url: window.location.href
+                        text: "Starfish",
+                        url: "Website:Random Fact and Trivia Generator ($[window.location.href])\n Sources: Open Trivia Databse & Useless facts"
                     }).catch(err => console.log('Sharing failed:', err));
                 } else {
                     navigator.clipboard.writeText(data.fact);
-                    alert("📋 Fact copied to clipboard!");
+                    alert("📋 Fact copied!");
                 }
             };
         })
