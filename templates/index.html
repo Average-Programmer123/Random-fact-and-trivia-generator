@@ -343,9 +343,9 @@
             shareBtn.onclick = () => {
                 if (navigator.share) {
                     navigator.share({
-                        title: "Random Fact",
+                        title: "Interesting fact!",
                         text: "Starfish",
-                        //url: window.location.href
+                        url: window.location.href
                     }).catch(err => console.log('Sharing failed:', err));
                 } else {
                     navigator.clipboard.writeText(data.fact);
