@@ -338,21 +338,21 @@
 
             // Show and configure the share button
             const shareBtn = document.getElementById("shareBtn");
-            shareBtn.style.display = "inline-block";
 
             shareBtn.onclick = () => {
                 if (navigator.share) {
                     navigator.share({
-                        title: "Interesting fact!",
-                        text: "Starfish",
+                        title: "Check out this amazing page!",
+                        text: "This page has some great content!",
                         url: window.location.href
-                    }).catch(err => console.log('Sharing failed:', err));
+                    })
+                    .then(() => console.log('Share successful!'))
+                    .catch((error) => console.log('Error sharing:', error));
                 } else {
-                    navigator.clipboard.writeText(data.fact);
-                    alert("📋 Fact copied!");
+                    console.log('Web Share API not supported in your browser.');
                 }
             };
-        })
+
         .catch(error => {
             // Hide the loading spinner on error
             document.getElementById("loading").style.display = "none";
