@@ -153,20 +153,6 @@
             opacity: 0;
             animation: fadeIn 1s ease-out forwards;
         }
-        #shareBtn {
-          background-color: #4CAF50;
-          color: white;
-          border: none;
-          padding: 10px 14px;
-          border-radius: 8px;
-          cursor: pointer;
-          font-size: 16px;
-        }
-        #shareBtn:hover {
-          background-color: #45a049;
-        }
-
-
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -291,7 +277,6 @@
         <div id="fact-container" style="text-align: center; margin-top: 20px;">
         <div id="fact" style="margin-bottom: 10px;"></div>
         </div>
-        <center><button id="shareBtn" style="display: none;">🔗 Share</button></center>
         <hr>
     </div>
     <div class="credit">
@@ -335,24 +320,6 @@
             factElement.style.animation = 'none'; // Reset the animation
             factElement.offsetHeight; // Trigger reflow
             factElement.style.animation = 'fadeIn 1s ease-out forwards';
-
-            // Show and configure the share button
-            const shareBtn = document.getElementById("shareBtn");
-
-            shareBtn.onclick = () => {
-                if (navigator.share) {
-                    navigator.share({
-                        title: "Check out this amazing page!",
-                        text: "This page has some great content!",
-                        url: window.location.href
-                    })
-                    .then(() => console.log('Share successful!'))
-                    .catch((error) => console.log('Error sharing:', error));
-                } else {
-                    console.log('Web Share API not supported in your browser.');
-                }
-            };
-
         .catch(error => {
             // Hide the loading spinner on error
             document.getElementById("loading").style.display = "none";
