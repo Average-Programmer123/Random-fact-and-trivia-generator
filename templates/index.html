@@ -354,7 +354,9 @@
         <div class="ad"><center>
         
         </center></div>
-        <script>
+       <script>
+            let factTotalCount = 0; // Global counter
+        
             async function getFact() {
                 const genre = document.getElementById("genre").value;
                 const count = parseInt(document.getElementById("count").value) || 1;
@@ -362,7 +364,6 @@
                 const loading = document.getElementById("loading");
                 const container = document.getElementById("fact-container");
         
-                // Clear previous facts and show loading
                 container.innerHTML = "";
                 loading.style.display = "block";
         
@@ -370,9 +371,7 @@
                     try {
                         const response = await fetch('/get_fact', {
                             method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
+                            headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({ genre: genre })
                         });
         
@@ -383,6 +382,12 @@
                         factDiv.textContent = data.fact;
         
                         container.appendChild(factDiv);
+        
+                        factTotalCount++;
+                        if (factTotalCount === 15) {
+                            showFeedbackPopup();
+                        }
+        
                     } catch (error) {
                         console.error("Error fetching fact:", error);
                         const errorDiv = document.createElement("div");
@@ -394,7 +399,14 @@
         
                 loading.style.display = "none";
             }
-        </script>        
+        
+            function showFeedbackPopup() {
+                const shouldRedirect = confirm("🎉 You've read 15 facts! Want to help us improve by answering a short Google Form?");
+                if (shouldRedirect) {
+                    window.location.href = "https://forms.gle/YOUR-GOOGLE-FORM-ID"; // Replace with your actual form URL
+                }
+            }
+        </script>               
     </body>
     <footer>
         &copy; 2025 Random Fact Generator. All rights reserved. Suyash L.C
